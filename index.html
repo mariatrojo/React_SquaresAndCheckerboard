@@ -4,8 +4,13 @@
 	
 <div id="app"></div>
 
+<div id="checkerboard"></div>
 
 <script>
+
+////////////////////////////////////
+// COMPOSABLE SQUARES
+
 var style1 = { style: { color: 'white', backgroundColor: 'blue', width: '250px', height: '250px', display: 'inline-block' } };
 var style2 = { style: { color: 'blue', backgroundColor: 'red', width: '250px', height: '250px', display: 'inline-block' } };
 var style3 = { style: { color: 'green', backgroundColor: 'pink', width: '250px', height: '250px', display: 'inline-block' } };
@@ -17,5 +22,87 @@ const square3 = React.createElement('h1', style3, 'green on pink');
 const box = React.createElement('div', null, square1, square2, square3);
 
 ReactDOM.render(box, document.getElementById('app'));
+
+////////////////////////////////////
+// CHECKERBOARD
+
+var prompt = parseInt(prompt("Pick a number:"));
+
+console.log(prompt);
+
+function CheckerBoard (props) {
+  var rows = [];
+
+	for (var i = 1; i <= prompt; i++){
+		if (i % 2 !== 0){
+			rows.push(React.createElement('div', null, Rowblack()));
+		} else {
+			rows.push(React.createElement('div', null, Rowred())); 
+		}
+	}
+		
+	return React.createElement('div', null, rows);
+}
+
+function Rowblack (props) {
+  return React.createElement('div', null, [Cellblack(), Cellred(), Cellblack(), Cellred(), Cellblack(), Cellred(), Cellblack(), Cellred(), Cellblack(), Cellred(), Cellblack(), Cellred()])
+}
+function Rowred (props) {
+  return React.createElement('div', null, [Cellred(), Cellblack(), Cellred(), Cellblack(), Cellred(), Cellblack(), Cellred(), Cellblack(), Cellred(), Cellblack(), Cellred(), Cellblack()])
+}
+function Cellblack (props) {
+  return React.createElement('div', {style: blackCell}, null);
+}
+function Cellred (props) {
+  return React.createElement('div', {style: redCell}, null);
+}
+// And feel free to use the following object:
+var styles = {
+  row: {height: '20px'},
+  cell: {height: '20px', width: '20px', display:'inline-block'},
+  colorA: {backgroundColor: 'black'},
+  colorB: {backgroundColor: 'red'}
+}
+
+var row = {height: '20px'};
+var blackCell = {height: '20px', width: '20px', display:'inline-block', backgroundColor: 'black'};
+var redCell = {height: '20px', width: '20px', display:'inline-block', backgroundColor: 'red'};
+
+
+ReactDOM.render(CheckerBoard(), document.getElementById('checkerboard'));
+
+// ReactDOM.render(Rowred(), document.getElementById('checkerboard'))
+
+//
+
+// function renderBoard(){
+// 	var renderBlack = ReactDOM.render(Rowblack(), document.getElementById('checkerboard'));
+// 	var renderRed = ReactDOM.render(Rowred(), document.getElementById('checkerboard'));
+// 	var array = [ ];
+
+// 	if (parseInt(number)=== 1){
+// 	 return renderBlack;
+// 	}
+
+// 	if ((parseInt(number) % 2) === 0){
+// 		array.push(renderBlack);
+// 		array.push(renderRed);
+// 	}
+
+// 	if ((parseInt(number) % 2) !== 0){
+// 		array.push(renderRed);
+// 		array.push(renderBlack);
+// 		array.push(renderRed);
+// 	}
+
+// 	const map1 = array.map(x => { return x });
+// 	return map1;
+// }
+
+// renderBoard();
+
+
+
+
 
 </script>
