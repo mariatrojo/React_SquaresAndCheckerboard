@@ -1,0 +1,21 @@
+<script src="node_modules/react/umd/react.development.js"></script>
+<script src="node_modules/react-dom/umd/react-dom.development.js"></script>
+
+	
+<div id="app"></div>
+
+
+<script>
+var style1 = { style: { color: 'white', backgroundColor: 'blue', width: '250px', height: '250px', display: 'inline-block' } };
+var style2 = { style: { color: 'blue', backgroundColor: 'red', width: '250px', height: '250px', display: 'inline-block' } };
+var style3 = { style: { color: 'green', backgroundColor: 'pink', width: '250px', height: '250px', display: 'inline-block' } };
+
+const square1 = React.createElement('h1', style1, 'white on blue');
+const square2 = React.createElement('h1', style2, 'blue on red');
+const square3 = React.createElement('h1', style3, 'green on pink');
+
+const box = React.createElement('div', null, square1, square2, square3);
+
+ReactDOM.render(box, document.getElementById('app'));
+
+</script>
